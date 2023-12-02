@@ -3,7 +3,6 @@ import { EmployeeService } from './employee.service';
 import { Employee } from './schemas/employee.schema';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { NotFoundException } from '@nestjs/common';
-import e from 'express';
 
 @Controller('employee')
 export class EmployeeController {

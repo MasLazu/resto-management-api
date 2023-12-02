@@ -13,13 +13,13 @@ export enum EmployeePosition {
 
 @Schema({ timestamps: true })
 export class Employee {
-  @Prop({ required: true })
+  @Prop()
   name: string;
 
-  @Prop({ required: true })
+  @Prop()
   position: EmployeePosition;
 
-  @Prop({ required: true })
+  @Prop()
   status: EmployeeStatus;
 }
 
