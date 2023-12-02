@@ -1,0 +1,260 @@
+{
+  "category": [
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7a8",
+      "name": "appetizers"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7a9",
+      "name": "main course"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7aa",
+      "name": "salads"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7ab",
+      "name": "desserts"
+    }
+  ],
+  "menu": [
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+      "name": "Bruschetta Trio",
+      "price": 29000,
+      "category": "appetizers",
+      "description": "Fresh mozzarella, roasted red pepper & tomato, and olive tapenade. Served with grilled garlic flatbread."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7af",
+      "name": "Mozzarella Sticks",
+      "price": 19000,
+      "category": "appetizers",
+      "description": "Served with marinara sauce."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b0",
+      "name": "Stuffed Mushrooms",
+      "price": 34000,
+      "category": "appetizers",
+      "description": "Mushroom caps filled with a savory herb and cheese stuffing."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b1",
+      "name": "Grilled Salmon",
+      "price": 34000,
+      "category": "main course",
+      "description": "Fresh salmon fillet grilled to perfection. Served with your choice of two sides."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b2",
+      "name": "Spaghetti with Meatballs",
+      "price": 24000,
+      "category": "main course",
+      "description": "Spaghetti topped with our homemade marinara sauce and tender meatballs."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b3",
+      "name": "Margherita",
+      "price": 21000,
+      "category": "main course",
+      "description": "Fresh mozzarella, basil, and tomato sauce."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b4",
+      "name": "Chicken Caesar Salad",
+      "price": 18000,
+      "category": "salads",
+      "description": "Grilled chicken, romaine lettuce, croutons, and Caesar dressing."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b5",
+      "name": "Greek Salad",
+      "price": 18000,
+      "category": "salads",
+      "description": "Romaine lettuce, tomatoes, cucumbers, red onions, olives, feta cheese, and Greek dressing."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b6",
+      "name": "Tiramisu",
+      "price": 9000,
+      "category": "desserts",
+      "description": "Ladyfingers dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese, flavored with cocoa."
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b7",
+      "name": "Cheesecake",
+      "price": 9000,
+      "category": "desserts",
+      "description": "New York style cheesecake topped with your choice of chocolate, strawberry, or caramel sauce."
+    }
+  ],
+  "employee": [
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b8",
+      "name": "John Doe",
+      "position": "waiter",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7b9",
+      "name": "Jane Doe",
+      "position": "casheir",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7ba",
+      "name": "John Smith",
+      "position": "waiter",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7bb",
+      "name": "Jane Smith",
+      "position": "waiter",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7bc",
+      "name": "John Doe",
+      "position": "chef",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7bd",
+      "name": "Jane Doe",
+      "position": "chef",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7be",
+      "name": "John Smith",
+      "position": "chef",
+      "status": "active"
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7bf",
+      "name": "Jane Smith",
+      "position": "chef",
+      "status": "active"
+    }
+  ],
+  "order": [
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7c0",
+      "customer": "John Doe",
+      "table": 1,
+      "status": "paid",
+      "waiter": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7b8",
+        "name": "John Doe"
+      },
+      "chef": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7bc",
+        "name": "John Doe"
+      },
+      "casheir": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7b9",
+        "name": "Jane Doe"
+      },
+      "total": 120000,
+      "items": [
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Bruschetta Trio",
+          "price": 29000,
+          "quantity": 1
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Mozzarella Sticks",
+          "price": 19000,
+          "quantity": 3
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Stuffed Mushrooms",
+          "price": 34000,
+          "quantity": 4
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Grilled Salmon",
+          "price": 34000,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7c1",
+      "customer": "Jane Doe",
+      "table": 2,
+      "status": "paid",
+      "waiter": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7b9",
+        "name": "Jane Doe"
+      },
+      "chef": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7bd",
+        "name": "Jane Doe"
+      },
+      "casheir": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7b9",
+        "name": "Jane Doe"
+      },
+      "total": 120000,
+      "items": [
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Bruschetta Trio",
+          "price": 29000,
+          "quantity": 1
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Mozzarella Sticks",
+          "price": 19000,
+          "quantity": 3
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Stuffed Mushrooms",
+          "price": 34000,
+          "quantity": 4
+        },
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Grilled Salmon",
+          "price": 34000,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "_id": "5e8c2f9e8e0e8c0017a6d7c2",
+      "customer": "John Smith",
+      "table": 3,
+      "status": "paid",
+      "waiter": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7ba",
+        "name": "John Smith"
+      },
+      "chef": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7be",
+        "name": "John Smith"
+      },
+      "casheir": {
+        "_id": "5e8c2f9e8e0e8c0017a6d7b9",
+        "name": "Jane Doe"
+      },
+      "items": [
+        {
+          "_id": "5e8c2f9e8e0e8c0017a6d7ae",
+          "name": "Bruschetta Trio",
+          "price": 29000,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
