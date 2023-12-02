@@ -2,6 +2,8 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { Employee } from './schemas/employee.schema';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { NotFoundException } from '@nestjs/common';
+import e from 'express';
 
 @Controller('employee')
 export class EmployeeController {
@@ -21,7 +23,9 @@ export class EmployeeController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Employee> {
-    return this.employeeService.findOne(id);
+    const employee = await this.employeeService.findOne(id);
+    if (!employee) throw new NotFoundException('Employee does not exist!');
+    return employee;
   }
 
   @Put(':id')
@@ -29,6 +33,8 @@ export class EmployeeController {
     @Param('id') id: string,
     @Body() updateEmployeeDto: Employee,
   ): Promise<Employee> {
-    return this.employeeService.update(id, updateEmployeeDto);
+    const employee = this.employeeService.update(id, updateEmployeeDto);
+    if (!employee) throw new NotFoundException('Employee does not exist!');
+    return employee;
   }
 }
