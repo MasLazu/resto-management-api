@@ -1,20 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { InjectModel } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
-import { Employee } from './schemas/employee.schema';
-
+import { EmployeeService } from 'src/employee/employee.service';
 @Injectable()
 export class AuthService {
   constructor(
     private jwtService: JwtService,
-    @InjectModel(Employee.name)
-    private readonly employeeModel: mongoose.Model<Employee>,
+    private employeeService: EmployeeService,
   ) {}
 
   async signIn(id: string, pass: string): Promise<{ access_token: string }> {
-    const employee = await this.employeeModel.findById(id);
+    const employee = await this.employeeService.fundOneWithPassword(id);
     if (!employee) {
       throw new UnauthorizedException(
         "Employee doesn't exist or password is wrong",
