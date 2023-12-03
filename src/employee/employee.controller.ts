@@ -3,6 +3,7 @@ import { EmployeeService } from './employee.service';
 import { Employee } from './schemas/employee.schema';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { NotFoundException } from '@nestjs/common';
+import { ResponseEmployeeDto } from './dto/reponse-employee.dto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -11,17 +12,17 @@ export class EmployeeController {
   @Post()
   async create(
     @Body() createEmployeeDto: CreateEmployeeDto,
-  ): Promise<Employee> {
+  ): Promise<ResponseEmployeeDto> {
     return this.employeeService.create(createEmployeeDto);
   }
 
   @Get()
-  async findAll(): Promise<Employee[]> {
+  async findAll(): Promise<ResponseEmployeeDto[]> {
     return this.employeeService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Employee> {
+  async findOne(@Param('id') id: string): Promise<ResponseEmployeeDto> {
     const employee = await this.employeeService.findOne(id);
     if (!employee) throw new NotFoundException('Employee does not exist!');
     return employee;
@@ -31,7 +32,7 @@ export class EmployeeController {
   async update(
     @Param('id') id: string,
     @Body() updateEmployeeDto: Employee,
-  ): Promise<Employee> {
+  ): Promise<ResponseEmployeeDto> {
     const employee = this.employeeService.update(id, updateEmployeeDto);
     if (!employee) throw new NotFoundException('Employee does not exist!');
     return employee;

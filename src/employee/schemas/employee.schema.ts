@@ -17,6 +17,9 @@ export class Employee {
   name: string;
 
   @Prop()
+  password: string;
+
+  @Prop()
   position: EmployeePosition;
 
   @Prop()

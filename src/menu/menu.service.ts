@@ -8,7 +8,7 @@ import { UpdateMenuDto } from './dto/update-menu.dto';
 @Injectable()
 export class MenuService {
   constructor(
-    @InjectModel('Menu') private readonly menuModel: mongoose.Model<any>,
+    @InjectModel('Menu') private readonly menuModel: mongoose.Model<Menu>,
   ) {}
 
   async create(menu: CreateMenuDto): Promise<Menu> {

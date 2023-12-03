@@ -3,17 +3,17 @@ import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 export class CreateMenuDto {
   @IsNotEmpty()
   @IsString()
-  readonly name: string;
+  name: string;
 
   @IsNotEmpty()
   @IsNumber()
-  readonly price: number;
+  price: number;
 
   @IsNotEmpty()
   @IsString()
-  readonly category: string;
+  category: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly description: string;
+  description: string;
 }

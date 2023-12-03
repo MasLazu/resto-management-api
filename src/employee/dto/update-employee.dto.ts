@@ -4,13 +4,17 @@ import { IsEnum, IsString, IsOptional } from 'class-validator';
 export class UpdateEmployeeDto {
   @IsOptional()
   @IsString()
-  readonly name: string;
+  name: string;
+
+  @IsOptional()
+  @IsString()
+  password: string;
 
   @IsOptional()
   @IsEnum(EmployeePosition)
-  readonly position: EmployeePosition;
+  position: EmployeePosition;
 
   @IsOptional()
   @IsEnum(EmployeeStatus)
-  readonly status: EmployeeStatus;
+  status: EmployeeStatus;
 }

@@ -4,13 +4,17 @@ import { IsEnum, IsString, IsNotEmpty } from 'class-validator';
 export class CreateEmployeeDto {
   @IsNotEmpty()
   @IsString()
-  readonly name: string;
+  name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 
   @IsNotEmpty()
   @IsEnum(EmployeePosition)
-  readonly position: EmployeePosition;
+  position: EmployeePosition;
 
   @IsNotEmpty()
   @IsEnum(EmployeeStatus)
-  readonly status: EmployeeStatus;
+  status: EmployeeStatus;
 }

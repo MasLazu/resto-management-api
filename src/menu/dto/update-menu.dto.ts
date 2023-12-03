@@ -3,17 +3,17 @@ import { IsString, IsNumber, IsOptional } from 'class-validator';
 export class UpdateMenuDto {
   @IsOptional()
   @IsString()
-  readonly name: string;
+  name: string;
 
   @IsOptional()
   @IsNumber()
-  readonly price: number;
+  price: number;
 
   @IsOptional()
   @IsString()
-  readonly category: string;
+  category: string;
 
   @IsOptional()
   @IsString()
-  readonly description: string;
+  description: string;
 }
