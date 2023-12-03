@@ -1,15 +1,26 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { Employee } from './schemas/employee.schema';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { NotFoundException } from '@nestjs/common';
 import { ResponseEmployeeDto } from './dto/reponse-employee.dto';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @Post()
+  @UseGuards(AdminGuard)
   async create(
     @Body() createEmployeeDto: CreateEmployeeDto,
   ): Promise<ResponseEmployeeDto> {
@@ -29,6 +40,7 @@ export class EmployeeController {
   }
 
   @Put(':id')
+  @UseGuards(AdminGuard)
   async update(
     @Param('id') id: string,
     @Body() updateEmployeeDto: Employee,

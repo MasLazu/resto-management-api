@@ -4,12 +4,15 @@ import { Menu } from './schemas/menu.schema';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { NotFoundException } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 @Controller('menu')
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Post()
+  @UseGuards(AdminGuard)
   async create(@Body() createMenuDto: CreateMenuDto): Promise<Menu> {
     return this.menuService.create(createMenuDto);
   }
@@ -27,6 +30,7 @@ export class MenuController {
   }
 
   @Put(':id')
+  @UseGuards(AdminGuard)
   async update(
     @Param('id') id: string,
     @Body() updateMenuDto: UpdateMenuDto,

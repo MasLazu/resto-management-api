@@ -1,17 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { EmployeeModule } from 'src/employee/employee.module';
-import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
+import { EmployeeSchema } from './schemas/employee.schema';
 
 @Module({
   imports: [
-    EmployeeModule,
-    JwtModule.register({
-      global: true,
-      secret: 'kajdoawidoadiaoidjaoidoadoaidogieirgur',
-      signOptions: { expiresIn: '3600s' },
-    }),
+    MongooseModule.forFeature([{ name: 'Employee', schema: EmployeeSchema }]),
   ],
   providers: [AuthService],
   controllers: [AuthController],

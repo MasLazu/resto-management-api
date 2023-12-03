@@ -12,9 +12,7 @@ export class EmployeeService {
   constructor(
     @InjectModel(Employee.name)
     private readonly employeeModel: mongoose.Model<Employee>,
-  ) {
-    this.employeeModel.createIndexes();
-  }
+  ) {}
 
   async create(employee: CreateEmployeeDto): Promise<ResponseEmployeeDto> {
     employee.password = await bcrypt.hash(

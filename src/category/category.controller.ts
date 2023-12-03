@@ -12,12 +12,15 @@ import { Category } from './schemas/category.schema';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { NotFoundException } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
+  @UseGuards(AdminGuard)
   async create(
     @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<Category> {
@@ -37,6 +40,7 @@ export class CategoryController {
   }
 
   @Put(':id')
+  @UseGuards(AdminGuard)
   async update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
