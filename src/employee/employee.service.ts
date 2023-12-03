@@ -34,6 +34,10 @@ export class EmployeeService {
     return await this.employeeModel.findById(id, { password: 0 });
   }
 
+  async fundOneWithPassword(id: string): Promise<Employee> {
+    return await this.employeeModel.findById(id);
+  }
+
   async update(
     id: string,
     updateEmployeeDto: UpdateEmployeeDto,
