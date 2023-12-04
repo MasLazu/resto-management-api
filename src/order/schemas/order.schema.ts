@@ -43,7 +43,7 @@ export class Order {
   status: OrderStatus;
 
   @Prop()
-  witer: Employee;
+  waiter: Employee;
 
   @Prop()
   chef: Employee;
