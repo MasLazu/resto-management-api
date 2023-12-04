@@ -28,7 +28,7 @@ export class OrderController {
     @Req() { user }: { user: user },
   ) {
     try {
-      return this.orderService.create(createOrderDto, user);
+      return await this.orderService.create(createOrderDto, user);
     } catch {
       throw new InternalServerErrorException('Error creating order!');
     }
@@ -38,17 +38,17 @@ export class OrderController {
   @UseGuards(ChefGuard)
   async cook(@Param('id') id: string, @Req() { user }: { user: user }) {
     try {
-      return this.orderService.cook(id, user);
+      return await this.orderService.cook(id, user);
     } catch (err) {
       throw new BadRequestException(err.message);
     }
   }
 
-  @Get('pay/:id')
+  @Put('pay/:id')
   @UseGuards(ChashierGuard)
   async pay(@Param('id') id: string, @Req() { user }: { user: user }) {
     try {
-      return this.orderService.pay(id, user);
+      return await this.orderService.pay(id, user);
     } catch (err) {
       throw new BadRequestException(err.message);
     }
@@ -57,7 +57,7 @@ export class OrderController {
   @Get()
   async findAll() {
     try {
-      return this.orderService.findAll();
+      return await this.orderService.findAll();
     } catch {
       throw new InternalServerErrorException('Error getting orders!');
     }

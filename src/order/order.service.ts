@@ -57,8 +57,8 @@ export class OrderService {
       throw new Error('Order not found');
     }
 
-    if (order.status !== OrderStatus.ORDERED) {
-      throw new Error('Order is not in status ORDERED');
+    if (order.status !== OrderStatus.COOKED) {
+      throw new Error('Order is not in status COOCKED');
     }
 
     order.status = OrderStatus.PAID;

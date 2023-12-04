@@ -25,7 +25,7 @@ export class EmployeeController {
     @Body() createEmployeeDto: CreateEmployeeDto,
   ): Promise<ResponseEmployeeDto> {
     try {
-      return this.employeeService.create(createEmployeeDto);
+      return await this.employeeService.create(createEmployeeDto);
     } catch {
       throw new InternalServerErrorException('Error creating employee!');
     }
@@ -34,7 +34,7 @@ export class EmployeeController {
   @Get()
   async findAll(): Promise<ResponseEmployeeDto[]> {
     try {
-      return this.employeeService.findAll();
+      return await this.employeeService.findAll();
     } catch {
       throw new InternalServerErrorException('Error getting employees!');
     }

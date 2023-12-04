@@ -23,7 +23,7 @@ export class MenuController {
   @UseGuards(AdminGuard)
   async create(@Body() createMenuDto: CreateMenuDto): Promise<Menu> {
     try {
-      return this.menuService.create(createMenuDto);
+      return await this.menuService.create(createMenuDto);
     } catch {
       throw new InternalServerErrorException('Error creating menu!');
     }

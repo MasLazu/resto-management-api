@@ -25,7 +25,7 @@ export class CategoryController {
     @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<Category> {
     try {
-      return this.categoryService.create(createCategoryDto);
+      return await this.categoryService.create(createCategoryDto);
     } catch {
       throw new InternalServerErrorException('Error creating category!');
     }
@@ -34,7 +34,7 @@ export class CategoryController {
   @Get()
   async findAll(): Promise<Category[]> {
     try {
-      return this.categoryService.findAll();
+      return await this.categoryService.findAll();
     } catch {
       throw new InternalServerErrorException('Error getting categories!');
     }
