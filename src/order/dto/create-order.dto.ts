@@ -35,10 +35,6 @@ export class CreateOrderDto {
   tableNumber: number;
 
   @IsNotEmpty()
-  @IsEnum(OrderStatus)
-  status: OrderStatus;
-
-  @IsNotEmpty()
   @IsNumber()
   total: number;
 

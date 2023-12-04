@@ -6,7 +6,7 @@ import {
   Post,
   Put,
   UseGuards,
-  Req,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { Employee } from './schemas/employee.schema';
@@ -24,19 +24,31 @@ export class EmployeeController {
   async create(
     @Body() createEmployeeDto: CreateEmployeeDto,
   ): Promise<ResponseEmployeeDto> {
-    return this.employeeService.create(createEmployeeDto);
+    try {
+      return this.employeeService.create(createEmployeeDto);
+    } catch {
+      throw new InternalServerErrorException('Error creating employee!');
+    }
   }
 
   @Get()
   async findAll(): Promise<ResponseEmployeeDto[]> {
-    return this.employeeService.findAll();
+    try {
+      return this.employeeService.findAll();
+    } catch {
+      throw new InternalServerErrorException('Error getting employees!');
+    }
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<ResponseEmployeeDto> {
-    const employee = await this.employeeService.findOne(id);
-    if (!employee) throw new NotFoundException('Employee does not exist!');
-    return employee;
+    try {
+      const employee = await this.employeeService.findOne(id);
+      if (!employee) throw new NotFoundException('Employee does not exist!');
+      return employee;
+    } catch {
+      throw new NotFoundException('Employee does not exist!');
+    }
   }
 
   @Put(':id')
@@ -45,8 +57,12 @@ export class EmployeeController {
     @Param('id') id: string,
     @Body() updateEmployeeDto: Employee,
   ): Promise<ResponseEmployeeDto> {
-    const employee = this.employeeService.update(id, updateEmployeeDto);
-    if (!employee) throw new NotFoundException('Employee does not exist!');
-    return employee;
+    try {
+      const employee = this.employeeService.update(id, updateEmployeeDto);
+      if (!employee) throw new NotFoundException('Employee does not exist!');
+      return employee;
+    } catch {
+      throw new NotFoundException('Employee does not exist!');
+    }
   }
 }

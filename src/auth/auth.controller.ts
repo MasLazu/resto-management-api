@@ -1,4 +1,11 @@
-import { Controller, Post, HttpCode, HttpStatus, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  HttpCode,
+  HttpStatus,
+  Body,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInEmployeeDto } from './dto/signin-employee.dto';
 
@@ -8,7 +15,13 @@ export class AuthController {
 
   @Post('signin')
   @HttpCode(HttpStatus.OK)
-  signIn(@Body() signIn: SignInEmployeeDto): Promise<{ access_token: string }> {
-    return this.authService.signIn(signIn.id, signIn.password);
+  async signIn(
+    @Body() signIn: SignInEmployeeDto,
+  ): Promise<{ access_token: string }> {
+    try {
+      return await this.authService.signIn(signIn.id, signIn.password);
+    } catch (err) {
+      throw new UnauthorizedException(err.message);
+    }
   }
 }

@@ -5,7 +5,7 @@ import {
   Put,
   Body,
   Param,
-  Delete,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './schemas/category.schema';
@@ -24,19 +24,31 @@ export class CategoryController {
   async create(
     @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<Category> {
-    return this.categoryService.create(createCategoryDto);
+    try {
+      return this.categoryService.create(createCategoryDto);
+    } catch {
+      throw new InternalServerErrorException('Error creating category!');
+    }
   }
 
   @Get()
   async findAll(): Promise<Category[]> {
-    return this.categoryService.findAll();
+    try {
+      return this.categoryService.findAll();
+    } catch {
+      throw new InternalServerErrorException('Error getting categories!');
+    }
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Category> {
-    const category = await this.categoryService.findOne(id);
-    if (!category) throw new NotFoundException('Category does not exist!');
-    return category;
+    try {
+      const category = await this.categoryService.findOne(id);
+      if (!category) throw new Error();
+      return category;
+    } catch {
+      throw new NotFoundException('Category does not exist!');
+    }
   }
 
   @Put(':id')
@@ -45,8 +57,12 @@ export class CategoryController {
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ): Promise<Category> {
-    const category = this.categoryService.update(id, updateCategoryDto);
-    if (!category) throw new NotFoundException('Category does not exist!');
-    return category;
+    try {
+      const category = this.categoryService.update(id, updateCategoryDto);
+      if (!category) throw new Error();
+      return category;
+    } catch {
+      throw new NotFoundException('Category does not exist!');
+    }
   }
 }

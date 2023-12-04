@@ -1,9 +1,17 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { Menu } from './schemas/menu.schema';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
-import { NotFoundException } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { AdminGuard } from 'src/guards/admin.guard';
 
@@ -14,19 +22,31 @@ export class MenuController {
   @Post()
   @UseGuards(AdminGuard)
   async create(@Body() createMenuDto: CreateMenuDto): Promise<Menu> {
-    return this.menuService.create(createMenuDto);
+    try {
+      return this.menuService.create(createMenuDto);
+    } catch {
+      throw new InternalServerErrorException('Error creating menu!');
+    }
   }
 
   @Get()
   async findAll(): Promise<Menu[]> {
-    return this.menuService.findAll();
+    try {
+      return this.menuService.findAll();
+    } catch {
+      throw new InternalServerErrorException('Error getting menus!');
+    }
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Menu> {
-    const menu = await this.menuService.findOne(id);
-    if (!menu) throw new NotFoundException('Menu does not exist!');
-    return menu;
+    try {
+      const menu = await this.menuService.findOne(id);
+      if (!menu) throw new Error();
+      return menu;
+    } catch {
+      throw new NotFoundException('Menu does not exist!');
+    }
   }
 
   @Put(':id')
@@ -35,8 +55,12 @@ export class MenuController {
     @Param('id') id: string,
     @Body() updateMenuDto: UpdateMenuDto,
   ): Promise<Menu> {
-    const menu = this.menuService.update(id, updateMenuDto);
-    if (!menu) throw new NotFoundException('Menu does not exist!');
-    return menu;
+    try {
+      const menu = this.menuService.update(id, updateMenuDto);
+      if (!menu) throw new Error();
+      return menu;
+    } catch {
+      throw new NotFoundException('Menu does not exist!');
+    }
   }
 }
